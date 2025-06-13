@@ -9,11 +9,13 @@ All data and functions are in `/utils` directory.
 
 ## Development
 
-Run a dev server using `npm run dev` and then open up [http://localhost:1245](http://localhost:1245)
+Run a dev server using `npm run dev` and then open up [http://localhost:1245](http://localhost:1245).
+
+You can access the endpoints locally on localhost:1245[/getAnswer](http://localhost:1245/getAnswer) and [/allAnswers](http://localhost:1245/allAnswers).
 
 ## Endpoints
 
-Use [`/getAnswer`](http://localhost:1245/getAnswer) to get a random answer for your question, or use [`/allAnswers`](http://localhost:1245/allAnswers) to view all answers.
+Use [`/getAnswer`](http://api.8.alialmasi.ir/getAnswer) to get a random answer for your question, or use [`/allAnswers`](http://api.8.alialmasi.ir/allAnswers) to view all answers.
 
 The `/getAnswer` accepts both GET & POST methods and you can also send the question to be included in the response. In GET is it received via URL query.
 
