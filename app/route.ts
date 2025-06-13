@@ -15,6 +15,8 @@ export async function GET(res: NextApiResponse) {
     <html lang="en">
       <head>
         <title>8-magic-api</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
           body {
             font-family: system-ui;
@@ -42,13 +44,13 @@ export async function GET(res: NextApiResponse) {
 
     return new Response(contentHtml, {
       headers: {
-        "Content-Type": "text/html",
+        "Content-Type": "text/html; charset=UTF-8",
       },
     });
   } catch (error: any) {
     return new Response("Error: " + (error.message || "Unknown error"), {
       headers: {
-        "Content-Type": "text/plain",
+        "Content-Type": "text/plain; charset=UTF-8",
       },
     });
   }
