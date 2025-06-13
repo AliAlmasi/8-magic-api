@@ -22,3 +22,13 @@ The `/getAnswer` accepts both GET & POST methods and you can also send the quest
 The `/allAnswers` only accepts GET method and the only query it accepts is the category of the answers
 
 > _e.g._ `/allAnswers?type={ positive | neutral | negative }`
+
+## Bugs and errors
+
+Found a bug? Faced an error? You can always [submit a new issue on GitHub](https://github.com/AliAlmasi/8-magic-api/issues/new).
+
+You can also contact me by email ([a710almasi@gmail.com](mailto:a710almasi@gmail.com)) or other links in [my webpage](https://alialmasi.ir).
+
+## License
+
+This (Sub)Project is licensed with [GNU GPL3 License](https://github.com/AliAlmasi/8-magic-api/blob/main/LICENSE).
