@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
       new URL(req.url).searchParams.get("type") ||
       new URL(req.url).searchParams.get("t") ||
       "";
-    const type: string = t.trim() || "all";
+    const type: string = t.trim().toLowerCase() || "all";
     return new Response(
       JSON.stringify({
         status: "success",
