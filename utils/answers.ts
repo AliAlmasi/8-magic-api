@@ -1,21 +1,9 @@
+import { answerObject } from "./types";
+
 let id = 0;
 
 /**
- * @typedef {object} AnswerObject
- * @property {string} id - The ID of the answer.
- * @property {string} answer - The answer text.
- * @property {string} type - The type of answer (positive, neutral, negative).
- * @property {string} emoji - The emoji associated with the answer.
- */
-export type AnswerObject = {
-  id: string;
-  answer: string;
-  type: string;
-  emoji: string;
-};
-
-/**
- * @returns {AnswerObject[]} An array of positive answer objects.
+ * @returns {answerObject[]} An array of positive answer objects.
  */
 export const positiveAnswers = [
   "Without|a doubt",
@@ -25,7 +13,7 @@ export const positiveAnswers = [
   "Most|likely",
   "Signs point|to yes",
   "It is|certain",
-].map((answer) => {
+].map((answer: string): answerObject => {
   return {
     id: `${++id}`,
     answer: answer,
@@ -35,7 +23,7 @@ export const positiveAnswers = [
 });
 
 /**
- * @returns {AnswerObject[]} An array of neutral answer objects.
+ * @returns {answerObject[]} An array of neutral answer objects.
  */
 export const neutralAnswers = [
   "Reply hazy,|try again",
@@ -45,7 +33,7 @@ export const neutralAnswers = [
   "Concentrate|and ask again",
   "I'm not sure|right now",
   "Maybe,|IDK",
-].map((answer) => {
+].map((answer: string): answerObject => {
   return {
     id: `${++id}`,
     answer: answer,
@@ -55,7 +43,7 @@ export const neutralAnswers = [
 });
 
 /**
- * @returns {AnswerObject[]} An array of negative answer objects.
+ * @returns {answerObject[]} An array of negative answer objects.
  */
 export const negativeAnswers = [
   "Don't count|on it",
@@ -65,7 +53,7 @@ export const negativeAnswers = [
   "Very|doubtful",
   "Don't think|about it",
   "Not a|chance",
-].map((answer) => {
+].map((answer: string): answerObject => {
   return {
     id: `${++id}`,
     answer: answer,
@@ -77,6 +65,10 @@ export const negativeAnswers = [
 /**
  * An array consisting of all answer objects.
  */
-const allAnswers = [...positiveAnswers, ...neutralAnswers, ...negativeAnswers];
+const allAnswers: Array<answerObject> = [
+  ...positiveAnswers,
+  ...neutralAnswers,
+  ...negativeAnswers,
+];
 
 export default allAnswers;

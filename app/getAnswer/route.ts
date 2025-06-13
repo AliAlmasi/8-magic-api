@@ -1,22 +1,23 @@
 import { NextRequest } from "next/server";
 
 import { randomAnswer } from "@/utils/randomAnswer";
-import headers from "../headers";
-
-const successOptions = {
-  status: 200,
-  statusText: "Here's your answer",
-  headers,
-};
+import { failOptions, successOptions } from "../headers";
+import { answerObject } from "@/utils/types";
+import { POSTbody } from "@/utils/types";
 
 /**
  *
- * @example /getAnswer?question=your_question
+ * @example ```/getAnswer?question=your_question```
+ * @example ```/getAnswer?q=your_question```
+ *
  */
 export async function GET(req: NextRequest) {
   try {
-    const question = new URL(req.url).searchParams.get("question");
-    const { answer, type, emoji } = randomAnswer();
+    const question: string =
+      new URL(req.url).searchParams.get("question") ||
+      new URL(req.url).searchParams.get("q") ||
+      "";
+    const { answer, type, emoji }: answerObject = randomAnswer();
 
     return new Response(
       JSON.stringify({
@@ -30,7 +31,7 @@ export async function GET(req: NextRequest) {
           },
         },
       }),
-      successOptions
+      successOptions("Here's your answer")
     );
   } catch (error: any) {
     return new Response(
@@ -38,24 +39,20 @@ export async function GET(req: NextRequest) {
         status: "fail",
         message: error.message || "An unknown error occurred",
       }),
-      {
-        status: 500,
-        statusText: "Error",
-        headers,
-      }
+      failOptions(500)
     );
   }
 }
 
 /**
  *
- * @example /getAnswer -- POST body: { question: "your_question" }
+ * @example ```/getAnswer -- POST body: { question: "your_question" }```
  */
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const question = body?.question;
-    const { answer, type, emoji } = randomAnswer();
+    const body: POSTbody = await req.json();
+    const question: string = body?.question || body?.q || "";
+    const { answer, type, emoji }: answerObject = randomAnswer();
 
     return new Response(
       JSON.stringify({
@@ -69,7 +66,7 @@ export async function POST(req: NextRequest) {
           },
         },
       }),
-      successOptions
+      successOptions("Here's your answer")
     );
   } catch (error: any) {
     return new Response(
@@ -79,10 +76,7 @@ export async function POST(req: NextRequest) {
           error.message ||
           "An unknown error occurred while processing your request",
       }),
-      {
-        status: 400,
-        headers,
-      }
+      failOptions(400, "Wrong request")
     );
   }
 }

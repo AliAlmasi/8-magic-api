@@ -5,15 +5,10 @@ import allAnswers, {
   neutralAnswers,
   positiveAnswers,
 } from "@/utils/answers";
-import headers from "../headers";
+import { failOptions, successOptions } from "../headers";
+import { answerObject } from "@/utils/types";
 
-const successOptions = {
-  status: 200,
-  statusText: "Got all the answers",
-  headers,
-};
-
-function getAllTypeAnswers(type: string) {
+function getAllTypeAnswers(type: string): Array<answerObject> {
   switch (type) {
     case "positive":
       return positiveAnswers;
@@ -32,12 +27,17 @@ function getAllTypeAnswers(type: string) {
 
 /**
  *
- * @example /allAnswers?type={ positive | neutral | negative }
+ * @example ```/allAnswers?type={ positive | neutral | negative }```
+ * @example ```/allAnswers?t={ positive | neutral | negative }```
+ *
  */
 export async function GET(req: NextRequest) {
   try {
-    const t = new URL(req.url).searchParams.get("type") || "";
-    const type = t.trim() || "all";
+    const t: string =
+      new URL(req.url).searchParams.get("type") ||
+      new URL(req.url).searchParams.get("t") ||
+      "";
+    const type: string = t.trim() || "all";
     return new Response(
       JSON.stringify({
         status: "success",
@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
           allAnswers: getAllTypeAnswers(type),
         },
       }),
-      successOptions
+      successOptions("Got all the answers")
     );
   } catch (error: any) {
     return new Response(
@@ -54,11 +54,7 @@ export async function GET(req: NextRequest) {
         status: "fail",
         message: error.message || "An unknown error occurred",
       }),
-      {
-        status: 500,
-        statusText: "Error",
-        headers,
-      }
+      failOptions()
     );
   }
 }

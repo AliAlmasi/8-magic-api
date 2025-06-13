@@ -1,10 +1,10 @@
-import { NextApiResponse } from "next";
 import fs from "fs";
 import path from "path";
 import { remark } from "remark";
 import html from "remark-html";
+import { failOptions, successOptions } from "./headers";
 
-export async function GET(res: NextApiResponse) {
+export async function GET() {
   const filePath = path.join(process.cwd(), `readme.md`);
 
   try {
@@ -42,16 +42,14 @@ export async function GET(res: NextApiResponse) {
     </html>
     `;
 
-    return new Response(contentHtml, {
-      headers: {
-        "Content-Type": "text/html; charset=UTF-8",
-      },
-    });
+    return new Response(
+      contentHtml,
+      successOptions("Welcome", 200, "text/html")
+    );
   } catch (error: any) {
-    return new Response("Error: " + (error.message || "Unknown error"), {
-      headers: {
-        "Content-Type": "text/plain; charset=UTF-8",
-      },
-    });
+    return new Response(
+      "Error: " + (error.message || "Unknown error"),
+      failOptions(500, "Error", "text/plain")
+    );
   }
 }
