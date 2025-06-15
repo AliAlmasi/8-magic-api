@@ -17,3 +17,14 @@ code {
   border: 1px solid gray;
   padding: 2px 4px;
 }
+pre {
+  border: 1px solid gray;
+  padding: 10px 20px;
+  width: 600px;
+  background-color: #0f0f0f;
+  color: #f0f0f0;
+  line-height: 1.2;
+}
+pre > code {
+  border: 0
+}

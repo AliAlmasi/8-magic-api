@@ -43,7 +43,7 @@ Expected response of `/getAnswer?q=will-i_ever+suceed_in+life`:
 
 The `/allAnswers` only accepts GET method and accepts 'type' (short: t) and 'number' (short: n) queries.
 
-The 'type' is used to filter out answers by type and 'number' specifies how much answers you need.
+The 'type' is used to filter out answers by type and 'number' is used to return how many answers you requested.
 
 > _e.g._ `/allAnswers?type={ positive | neutral | negative }`
 
