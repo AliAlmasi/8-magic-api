@@ -15,15 +15,63 @@ You can access the endpoints locally on localhost:1245[/getAnswer](http://localh
 
 ## Endpoints
 
-Use [`/getAnswer`](http://api.8.alialmasi.ir/getAnswer) to get a random answer for your question, or use [`/allAnswers`](http://api.8.alialmasi.ir/allAnswers) to view all answers.
+Use `/getAnswer` to get a random answer for your question, or use `/allAnswers` to view all answers.
 
-The `/getAnswer` accepts both GET & POST methods and you can also send the question to be included in the response. In GET is it received via URL query.
+### [`/getAnswer`](http://api.8.alialmasi.ir/getAnswer)
+
+The `/getAnswer` accepts both GET & POST methods and you can also send the 'question' (short: q) to be included in the response. In GET is it received via URL query.
 
 > _e.g._ via GET: `/getAnswer?question=your_question` or via POST: `/getAnswer -- POST body: { question: "your_question" }`
 
-The `/allAnswers` only accepts GET method and the only query it accepts is the category of the answers
+Expected response of `/getAnswer?q=will-i_ever+suceed_in+life`:
+
+```json
+{
+  "status": "success",
+  "data": {
+    "answer": {
+      "question": "will i ever suceed in life?",
+      "answer": "Better not tell you now",
+      "emoji": "🤷",
+      "type": "neutral"
+    }
+  }
+}
+```
+
+### [`/allAnswers`](http://api.8.alialmasi.ir/allAnswers)
+
+The `/allAnswers` only accepts GET method and accepts 'type' (short: t) and 'number' (short: n) queries.
+
+The 'type' is used to filter out answers by type and 'number' specifies how much answers you need.
 
 > _e.g._ `/allAnswers?type={ positive | neutral | negative }`
+
+Expected response of `/allAnswers?t=negative&n=2`: 
+
+```json
+{
+  "status": "success",
+  "data": {
+    "type": "negative",
+    "number": 2,
+    "allAnswers": [
+      {
+        "id": "21",
+        "answer": "Not a|chance",
+        "type": "negative",
+        "emoji": "👎"
+      },
+      {
+        "id": "18",
+        "answer": "Outlook not|so good",
+        "type": "negative",
+        "emoji": "👎"
+      }
+    ]
+  }
+}
+```
 
 ## Bugs and errors
 

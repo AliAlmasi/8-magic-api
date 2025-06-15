@@ -5,13 +5,24 @@ import { failOptions, successOptions } from "../headers";
 import { answerObject } from "@/utils/types";
 import { POSTbody } from "@/utils/types";
 
+function questionString(rawQ: string): string {
+  try {
+    let q: string = rawQ;
+    if (!rawQ.includes("?", -1)) q += "?";
+    q = q.replaceAll(/[+_-]/g, " ");
+    return q;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+}
+
 /**
  *
  * @example ```/getAnswer?question=your_question```
  * @example ```/getAnswer?q=your_question```
  *
  */
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest): Promise<Response> {
   try {
     const question: string =
       new URL(req.url).searchParams.get("question") ||
@@ -24,7 +35,7 @@ export async function GET(req: NextRequest) {
         status: "success",
         data: {
           answer: {
-            question: question || undefined,
+            question: questionString(question) || undefined,
             answer,
             emoji,
             type,
@@ -47,8 +58,10 @@ export async function GET(req: NextRequest) {
 /**
  *
  * @example ```/getAnswer -- POST body: { question: "your_question" }```
+ * @example ```/getAnswer -- POST body: { q: "your_question" }```
+ *
  */
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest): Promise<Response> {
   try {
     const body: POSTbody = await req.json();
     const question: string = body?.question || body?.q || "";
@@ -59,7 +72,7 @@ export async function POST(req: NextRequest) {
         status: "success",
         data: {
           answer: {
-            question: question || undefined,
+            question: questionString(question) || undefined,
             answer,
             emoji,
             type,

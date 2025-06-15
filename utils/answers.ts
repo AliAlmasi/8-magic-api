@@ -5,7 +5,7 @@ let id = 0;
 /**
  * @returns {answerObject[]} An array of positive answer objects.
  */
-export const positiveAnswers = [
+export const positiveAnswers: Array<answerObject> = [
   "Without|a doubt",
   "Yes,|definitely",
   "You may|rely on it",
@@ -25,7 +25,7 @@ export const positiveAnswers = [
 /**
  * @returns {answerObject[]} An array of neutral answer objects.
  */
-export const neutralAnswers = [
+export const neutralAnswers: Array<answerObject> = [
   "Reply hazy,|try again",
   "Ask again|later",
   "Better not|tell you now",
@@ -45,7 +45,7 @@ export const neutralAnswers = [
 /**
  * @returns {answerObject[]} An array of negative answer objects.
  */
-export const negativeAnswers = [
+export const negativeAnswers: Array<answerObject> = [
   "Don't count|on it",
   "My reply is|no",
   "My sources|say no",
