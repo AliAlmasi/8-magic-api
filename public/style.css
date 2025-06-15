@@ -1,0 +1,19 @@
+body {
+  font-family: system-ui;
+  background-color: #f0f0f0;
+  font-size: 16px;
+}
+a:link,
+a:visited {
+  color: darkblue;
+  text-decoration: none;
+}
+a:hover,
+a:active,
+a:focus {
+  text-decoration: underline 1px;
+}
+code {
+  border: 1px solid gray;
+  padding: 2px 4px;
+}
