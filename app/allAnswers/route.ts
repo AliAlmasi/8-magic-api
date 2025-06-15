@@ -6,18 +6,19 @@ import allAnswers, {
   positiveAnswers,
 } from "@/utils/answers";
 import { failOptions, successOptions } from "../headers";
-import { answerObject } from "@/utils/types";
+import { answerObject, answerArray } from "@/utils/types";
 
-function getAllAnswers(arr: Array<answerObject>, n: number) {
+function getAllAnswers(arr: answerArray, n: number): answerArray {
   if (n === 0) return arr;
   else {
-    if (n > arr.length) {
-      throw new RangeError("Requested number of elements exceeds array length");
-    }
-    const shuffled = arr.slice();
+    const shuffled: answerArray = arr.slice();
+    if (n > arr.length)
+      throw new RangeError(
+        `Requested number of elements exceeds array length (length: ${arr.length})`
+      );
 
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+    for (let i: number = shuffled.length - 1; i > 0; i--) {
+      const j: number = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
 
@@ -25,7 +26,7 @@ function getAllAnswers(arr: Array<answerObject>, n: number) {
   }
 }
 
-function getTypeAnswers(type: string, n: number): Array<answerObject> {
+function getTypeAnswers(type: string, n: number): answerArray {
   switch (type) {
     case "positive":
       return getAllAnswers(positiveAnswers, n);

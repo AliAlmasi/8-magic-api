@@ -4,6 +4,7 @@ export type answerObject = {
   type: string;
   emoji: string;
 };
+export type answerArray = Array<answerObject>;
 
 export type POSTbody = {
   question?: string;

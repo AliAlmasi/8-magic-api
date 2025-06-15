@@ -1,11 +1,11 @@
-import { answerObject } from "./types";
+import { answerObject, answerArray } from "./types";
 
 let id = 0;
 
 /**
  * @returns {answerObject[]} An array of positive answer objects.
  */
-export const positiveAnswers: Array<answerObject> = [
+export const positiveAnswers: answerArray = [
   "Without|a doubt",
   "Yes,|definitely",
   "You may|rely on it",
@@ -25,7 +25,7 @@ export const positiveAnswers: Array<answerObject> = [
 /**
  * @returns {answerObject[]} An array of neutral answer objects.
  */
-export const neutralAnswers: Array<answerObject> = [
+export const neutralAnswers: answerArray = [
   "Reply hazy,|try again",
   "Ask again|later",
   "Better not|tell you now",
@@ -45,7 +45,7 @@ export const neutralAnswers: Array<answerObject> = [
 /**
  * @returns {answerObject[]} An array of negative answer objects.
  */
-export const negativeAnswers: Array<answerObject> = [
+export const negativeAnswers: answerArray = [
   "Don't count|on it",
   "My reply is|no",
   "My sources|say no",
@@ -65,7 +65,7 @@ export const negativeAnswers: Array<answerObject> = [
 /**
  * An array consisting of all answer objects.
  */
-const allAnswers: Array<answerObject> = [
+const allAnswers: answerArray = [
   ...positiveAnswers,
   ...neutralAnswers,
   ...negativeAnswers,
