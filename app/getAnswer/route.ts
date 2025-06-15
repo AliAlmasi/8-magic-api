@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     return new Response(
       JSON.stringify({
-        status: "error",
+        status: "fail",
         message:
           error.message ||
           "An unknown error occurred while processing your request",
